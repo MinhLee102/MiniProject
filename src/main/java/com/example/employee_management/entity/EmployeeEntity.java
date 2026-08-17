@@ -1,6 +1,8 @@
 package com.example.employee_management.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "employees")
@@ -10,9 +12,12 @@ public class EmployeeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Tên nhân viên không được để trống")
     @Column(nullable = false)
     private String name;
 
+    @NotBlank(message = "Email không được để trống")
+    @Email(message = "Email không đúng định dạng hợp lệ")
     @Column(nullable = false, unique = true)
     private String email;
 
